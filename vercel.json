@@ -1,4 +1,8 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
-  "public": "build/web"
+    "builds": [
+        { "src": "build/web/**", "use": "@vercel/static" }
+    ],
+    "routes": [
+        { "src": "/(.*)", "dest": "/index.html" }
+    ]
 }
