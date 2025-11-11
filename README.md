@@ -7,7 +7,7 @@
   <img src="https://img.shields.io/badge/Flutter-3.16-blue?style=for-the-badge&logo=flutter" />
   <img src="https://img.shields.io/badge/Dart-3.2-blue?style=for-the-badge&logo=dart" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" />
-  <img src="https://img.shields.io/github/stars/Dev-Rocky07/calculateit?style=for-the-badge&color=yellow" />
+  <img src="https://img.shields.io/github/stars/Dev-Rocky07/calculateit?style=for-the-badge&logo=github&color=yellow" />
 </p>
 
 ---
