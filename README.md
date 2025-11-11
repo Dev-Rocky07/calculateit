@@ -72,9 +72,9 @@ calculateit/
 ├── pubspec.yaml                  # 📦 Flutter dependencies
 └── README.md                     # 🧾 Documentation file
 
+```
 
 ---
-```
 
 ## ⚡ Getting Started
 
