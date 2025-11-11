@@ -16,7 +16,6 @@
 
 **Calculate IT** is a next-gen calculator app crafted with ❤️ using **Flutter**.  
 It’s fast, clean, and aesthetic — built for users who love **smooth animations**, **minimal design**, and **a hint of tech magic**.
-<<<<<<< HEAD
 
 > 🧠 Not just another calculator — it’s a *vibe* of design, precision, and elegance.
 
