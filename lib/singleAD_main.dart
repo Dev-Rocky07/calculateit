@@ -1,9 +1,12 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await MobileAds.instance.initialize();
   await Hive.initFlutter();
   await Hive.openBox('partyFunds');
   runApp(PartyFundsApp());
@@ -39,6 +42,9 @@ class _PartyListScreenState extends State<PartyListScreen>
   final TextEditingController partyController = TextEditingController();
   late AnimationController _fabController;
 
+  BannerAd? _bannerAd;
+  bool _isBannerAdReady = false;
+
   @override
   void initState() {
     super.initState();
@@ -46,6 +52,7 @@ class _PartyListScreenState extends State<PartyListScreen>
       vsync: this,
       duration: Duration(milliseconds: 350),
     );
+    _loadBannerAd();
   }
 
   @override
@@ -53,6 +60,32 @@ class _PartyListScreenState extends State<PartyListScreen>
     _fabController.dispose();
     partyController.dispose();
     super.dispose();
+    _bannerAd?.dispose();
+  }
+
+  void _loadBannerAd() {
+    final String adUnitId = Platform.isAndroid
+        ? 'ca-app-pub-3940256099942544/1033173712'
+        : 'ca-app-pub-3940256099942544/2934735716';
+
+    final BannerAd banner = BannerAd(
+      size: AdSize.banner,
+      adUnitId: adUnitId,
+      listener: BannerAdListener(
+        onAdLoaded: (ad) {
+          setState(() {
+            _bannerAd = ad as BannerAd;
+            _isBannerAdReady = true;
+          });
+        },
+        onAdFailedToLoad: (ad, error) {
+          ad.dispose();
+        },
+      ),
+      request: const AdRequest(),
+    );
+
+    banner.load();
   }
 
   void _addParty() {
@@ -94,6 +127,12 @@ class _PartyListScreenState extends State<PartyListScreen>
           padding: const EdgeInsets.all(12.0),
           child: Column(
             children: [
+              if (_isBannerAdReady && _bannerAd != null)
+                SizedBox(
+                  width: _bannerAd!.size.width.toDouble(),
+                  height: _bannerAd!.size.height.toDouble(),
+                  child: AdWidget(ad: _bannerAd!),
+                ),
               Row(
                 children: [
                   Expanded(

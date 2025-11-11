@@ -1,8 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:label="Calculate-IT"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5642389083736086~9240118273" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
